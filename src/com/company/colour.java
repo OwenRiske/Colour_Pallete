@@ -69,7 +69,11 @@ public class colour {
         return hexCode;
     }
     void displayColour(){
-        System.out.println("\033[48;2;"+red+";"+green+";"+blue+"m");
+        //display the colour in the console
+        System.out.println("\033[48;2;"+red+";"+green+";"+blue+"m"+"\n\n");
+
+        //reset colour and print the colours hex code
+        System.out.println("\033[0m"+getHexCodeEfficiently());
 
     }
 }
