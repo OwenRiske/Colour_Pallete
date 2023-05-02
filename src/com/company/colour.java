@@ -29,34 +29,6 @@ public class colour {
         return new int[] {red,green,blue};
     }
 
-
-    /*
-    String getHexCode(){
-        String hexCode="#";
-
-        //add red to the end of the hex string
-        if(Integer.toHexString(red).length()<2){
-            hexCode+="0";
-        }
-        hexCode+=Integer.toHexString(red);
-
-        //add green to the end of the hex string
-        if(Integer.toHexString(green).length()<2){
-            hexCode+="0";
-        }
-        hexCode+=Integer.toHexString(green);
-
-        //add blue to the end of the hex string
-        if(Integer.toHexString(blue).length()<2){
-            hexCode+="0";
-        }
-        hexCode+=Integer.toHexString(blue);
-
-        return hexCode;
-    }
-
-     */
-
     //removes the redundant code
     String getHexCodeEfficiently(){
         String hexCode="#";
@@ -73,7 +45,7 @@ public class colour {
         System.out.println("\033[48;2;"+red+";"+green+";"+blue+"m"+"\n\n");
 
         //reset colour and print the colours hex code
-        System.out.println("\033[0m"+getHexCodeEfficiently());
+        System.out.println("\033[0m"+"Name: "+commonName+"  Red: "+red+" Green: "+green+"  Blue: "+blue+"  Hex code: "+getHexCodeEfficiently());
 
     }
 }

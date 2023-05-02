@@ -6,6 +6,9 @@
 .s0 { color: #ed864a;}
 .s1 { color: #ebebeb;}
 .s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #7ec3e6;}
+.s4 { color: #54b33e;}
+.s5 { color: #33ccff; font-weight: bold;}
 .ln { color: #999999; font-weight: normal; font-style: normal; }
 </style>
 </head>
@@ -43,11 +46,29 @@ colour.java</font>
 <a name="l26"><span class="ln">26   </span></a>    <span class="s1">}</span>
 <a name="l27"><span class="ln">27   </span></a>
 <a name="l28"><span class="ln">28   </span></a>    <span class="s0">int</span><span class="s1">[] getRGB(){</span>
-<a name="l29"><span class="ln">29   </span></a>        <span class="s0">int</span><span class="s1">[] RGB={red</span><span class="s2">, </span><span class="s1">green</span><span class="s2">, </span><span class="s1">blue}</span><span class="s2">;</span>
-<a name="l30"><span class="ln">30   </span></a>        <span class="s0">return </span><span class="s1">RGB</span><span class="s2">;</span>
-<a name="l31"><span class="ln">31   </span></a>    <span class="s1">}</span>
-<a name="l32"><span class="ln">32   </span></a>
-<a name="l33"><span class="ln">33   </span></a><span class="s1">}</span>
-<a name="l34"><span class="ln">34   </span></a></pre>
+<a name="l29"><span class="ln">29   </span></a>        <span class="s0">return new int</span><span class="s1">[] {red</span><span class="s2">,</span><span class="s1">green</span><span class="s2">,</span><span class="s1">blue}</span><span class="s2">;</span>
+<a name="l30"><span class="ln">30   </span></a>    <span class="s1">}</span>
+<a name="l31"><span class="ln">31   </span></a>
+<a name="l32"><span class="ln">32   </span></a>    <span class="s3">//removes the redundant code</span>
+<a name="l33"><span class="ln">33   </span></a>    <span class="s1">String getHexCodeEfficiently(){</span>
+<a name="l34"><span class="ln">34   </span></a>        <span class="s1">String hexCode=</span><span class="s4">&quot;#&quot;</span><span class="s2">;</span>
+<a name="l35"><span class="ln">35   </span></a>        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">c:getRGB()) {</span>
+<a name="l36"><span class="ln">36   </span></a>            <span class="s0">if</span><span class="s1">(Integer.toHexString(c).length()&lt;</span><span class="s5">2</span><span class="s1">){</span>
+<a name="l37"><span class="ln">37   </span></a>                <span class="s1">hexCode+=</span><span class="s4">&quot;0&quot;</span><span class="s2">;</span>
+<a name="l38"><span class="ln">38   </span></a>            <span class="s1">}</span>
+<a name="l39"><span class="ln">39   </span></a>            <span class="s1">hexCode+=Integer.toHexString(c)</span><span class="s2">;</span>
+<a name="l40"><span class="ln">40   </span></a>        <span class="s1">}</span>
+<a name="l41"><span class="ln">41   </span></a>        <span class="s0">return </span><span class="s1">hexCode</span><span class="s2">;</span>
+<a name="l42"><span class="ln">42   </span></a>    <span class="s1">}</span>
+<a name="l43"><span class="ln">43   </span></a>    <span class="s0">void </span><span class="s1">displayColour(){</span>
+<a name="l44"><span class="ln">44   </span></a>        <span class="s3">//display the colour in the console</span>
+<a name="l45"><span class="ln">45   </span></a>        <span class="s1">System.out.println(</span><span class="s4">&quot;</span><span class="s0">\033</span><span class="s4">[48;2;&quot;</span><span class="s1">+red+</span><span class="s4">&quot;;&quot;</span><span class="s1">+green+</span><span class="s4">&quot;;&quot;</span><span class="s1">+blue+</span><span class="s4">&quot;m&quot;</span><span class="s1">+</span><span class="s4">&quot;</span><span class="s0">\n\n</span><span class="s4">&quot;</span><span class="s1">)</span><span class="s2">;</span>
+<a name="l46"><span class="ln">46   </span></a>
+<a name="l47"><span class="ln">47   </span></a>        <span class="s3">//reset colour and print the colours hex code</span>
+<a name="l48"><span class="ln">48   </span></a>        <span class="s1">System.out.println(</span><span class="s4">&quot;</span><span class="s0">\033</span><span class="s4">[0m&quot;</span><span class="s1">+getHexCodeEfficiently())</span><span class="s2">;</span>
+<a name="l49"><span class="ln">49   </span></a>
+<a name="l50"><span class="ln">50   </span></a>    <span class="s1">}</span>
+<a name="l51"><span class="ln">51   </span></a><span class="s1">}</span>
+<a name="l52"><span class="ln">52   </span></a></pre>
 </body>
 </html>
