@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>colourPalette.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #7ec3e6;}
+.s4 { color: #33ccff; font-weight: bold;}
+.s5 { color: #54b33e;}
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+colourPalette.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.company</span><span class="s2">;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s2">;</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s0">import </span><span class="s1">java.util.Random</span><span class="s2">;</span>
+<a name="l5"><span class="ln">5    </span></a>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">public class </span><span class="s1">colourPalette{</span>
+<a name="l7"><span class="ln">7    </span></a>
+<a name="l8"><span class="ln">8    </span></a>    <span class="s1">ArrayList&lt;colour&gt; colours</span><span class="s2">;</span>
+<a name="l9"><span class="ln">9    </span></a>    <span class="s1">colour mainColour</span><span class="s2">;</span>
+<a name="l10"><span class="ln">10   </span></a>    <span class="s0">int </span><span class="s1">numOfColours</span><span class="s2">;</span>
+<a name="l11"><span class="ln">11   </span></a>    <span class="s1">Random rand</span><span class="s2">;</span>
+<a name="l12"><span class="ln">12   </span></a>
+<a name="l13"><span class="ln">13   </span></a>
+<a name="l14"><span class="ln">14   </span></a>    <span class="s3">//generative constructors</span>
+<a name="l15"><span class="ln">15   </span></a>    <span class="s3">//will make colour palettes</span>
+<a name="l16"><span class="ln">16   </span></a>    <span class="s1">colourPalette(colour mainColour</span><span class="s2">, </span><span class="s0">int </span><span class="s1">numberOfColours){</span>
+<a name="l17"><span class="ln">17   </span></a>        <span class="s3">//preset variables</span>
+<a name="l18"><span class="ln">18   </span></a>        <span class="s0">this</span><span class="s1">.colours=</span><span class="s0">new </span><span class="s1">ArrayList&lt;colour&gt;()</span><span class="s2">;</span><span class="s3">//don't have this don't work</span>
+<a name="l19"><span class="ln">19   </span></a>        <span class="s1">rand=</span><span class="s0">new </span><span class="s1">Random()</span><span class="s2">;</span>
+<a name="l20"><span class="ln">20   </span></a>
+<a name="l21"><span class="ln">21   </span></a>        <span class="s3">//get main Colour and add it to the palette</span>
+<a name="l22"><span class="ln">22   </span></a>        <span class="s0">this</span><span class="s1">.mainColour=mainColour</span><span class="s2">;</span>
+<a name="l23"><span class="ln">23   </span></a>        <span class="s0">this</span><span class="s1">.colours.add(mainColour)</span><span class="s2">;</span>
+<a name="l24"><span class="ln">24   </span></a>
+<a name="l25"><span class="ln">25   </span></a>        <span class="s0">this</span><span class="s1">.numOfColours=numberOfColours</span><span class="s2">;</span>
+<a name="l26"><span class="ln">26   </span></a>
+<a name="l27"><span class="ln">27   </span></a>        <span class="s3">//if palette has more than 1 colours make a contrasting colour</span>
+<a name="l28"><span class="ln">28   </span></a>        <span class="s0">if</span><span class="s1">(numberOfColours&gt;</span><span class="s4">1</span><span class="s1">){</span>
+<a name="l29"><span class="ln">29   </span></a>            <span class="s3">//opposite colour amounts to the main</span>
+<a name="l30"><span class="ln">30   </span></a>            <span class="s0">int </span><span class="s1">newColourR=</span><span class="s4">255</span><span class="s1">-mainColour.red</span><span class="s2">;</span>
+<a name="l31"><span class="ln">31   </span></a>            <span class="s0">int </span><span class="s1">newColourG=</span><span class="s4">255</span><span class="s1">-mainColour.green</span><span class="s2">;</span>
+<a name="l32"><span class="ln">32   </span></a>            <span class="s0">int </span><span class="s1">newColourB=</span><span class="s4">255</span><span class="s1">-mainColour.blue</span><span class="s2">;</span>
+<a name="l33"><span class="ln">33   </span></a>            <span class="s3">//make and add contrasting colour to the palette</span>
+<a name="l34"><span class="ln">34   </span></a>            <span class="s1">colour temp=</span><span class="s0">new </span><span class="s1">colour(newColourR</span><span class="s2">,</span><span class="s1">newColourG</span><span class="s2">,</span><span class="s1">newColourB</span><span class="s2">,</span><span class="s1">mainColour.commonName+</span><span class="s5">&quot;'s compliment&quot;</span><span class="s1">)</span><span class="s2">;</span>
+<a name="l35"><span class="ln">35   </span></a>            <span class="s1">colours.add(temp)</span><span class="s2">;</span>
+<a name="l36"><span class="ln">36   </span></a>            <span class="s0">if</span><span class="s1">(numberOfColours&gt;=</span><span class="s4">5</span><span class="s1">){</span>
+<a name="l37"><span class="ln">37   </span></a>                <span class="s3">//add a similar colour as the contrasting is the number of colours is more than or equal to 5</span>
+<a name="l38"><span class="ln">38   </span></a>                <span class="s1">numberOfColours--</span><span class="s2">;</span>
+<a name="l39"><span class="ln">39   </span></a>                <span class="s1">temp=makePaletteColour(temp</span><span class="s2">,</span><span class="s1">temp.commonName+</span><span class="s5">&quot;'s palette colour&quot;</span><span class="s1">)</span><span class="s2">;</span>
+<a name="l40"><span class="ln">40   </span></a>                <span class="s1">colours.add(temp)</span><span class="s2">;</span>
+<a name="l41"><span class="ln">41   </span></a>            <span class="s1">}</span>
+<a name="l42"><span class="ln">42   </span></a>            <span class="s3">//make similar colours to the main colours</span>
+<a name="l43"><span class="ln">43   </span></a>                <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; numberOfColours-</span><span class="s4">2</span><span class="s2">; </span><span class="s1">i++) {</span>
+<a name="l44"><span class="ln">44   </span></a>                    <span class="s1">temp=makePaletteColour(mainColour</span><span class="s2">,</span><span class="s5">&quot;Palette colour &quot;</span><span class="s1">+numberOfColours)</span><span class="s2">;</span>
+<a name="l45"><span class="ln">45   </span></a>            <span class="s1">colours.add(temp)</span><span class="s2">;</span>
+<a name="l46"><span class="ln">46   </span></a>                <span class="s1">}</span>
+<a name="l47"><span class="ln">47   </span></a>        <span class="s1">}</span>
+<a name="l48"><span class="ln">48   </span></a>    <span class="s1">}</span>
+<a name="l49"><span class="ln">49   </span></a>
+<a name="l50"><span class="ln">50   </span></a>
+<a name="l51"><span class="ln">51   </span></a>    <span class="s0">void </span><span class="s1">display(){</span>
+<a name="l52"><span class="ln">52   </span></a>        <span class="s3">//display each colour</span>
+<a name="l53"><span class="ln">53   </span></a>        <span class="s0">for </span><span class="s1">(colour c:colours) {</span>
+<a name="l54"><span class="ln">54   </span></a>            <span class="s1">c.displayColour()</span><span class="s2">;</span>
+<a name="l55"><span class="ln">55   </span></a>        <span class="s1">}</span>
+<a name="l56"><span class="ln">56   </span></a>
+<a name="l57"><span class="ln">57   </span></a>
+<a name="l58"><span class="ln">58   </span></a>    <span class="s1">}</span>
+<a name="l59"><span class="ln">59   </span></a>    <span class="s0">private int </span><span class="s1">RGBChange(</span><span class="s0">int </span><span class="s1">colour){</span>
+<a name="l60"><span class="ln">60   </span></a>        <span class="s0">int </span><span class="s1">output=-</span><span class="s4">300</span><span class="s2">;</span>
+<a name="l61"><span class="ln">61   </span></a>
+<a name="l62"><span class="ln">62   </span></a>        <span class="s3">//while colour isn't a possible amount for RGB</span>
+<a name="l63"><span class="ln">63   </span></a>        <span class="s0">while</span><span class="s1">(colour+output&lt;</span><span class="s4">0 </span><span class="s1">|| colour+output&gt;</span><span class="s4">255</span><span class="s1">){</span>
+<a name="l64"><span class="ln">64   </span></a>            <span class="s3">//randomize number change to the inputted colour</span>
+<a name="l65"><span class="ln">65   </span></a>            <span class="s1">output=(rand.nextInt(</span><span class="s4">20</span><span class="s1">)-</span><span class="s4">10</span><span class="s1">)*</span><span class="s4">10</span><span class="s2">;</span>
+<a name="l66"><span class="ln">66   </span></a>        <span class="s1">}</span>
+<a name="l67"><span class="ln">67   </span></a>        <span class="s0">return  </span><span class="s1">colour+output</span><span class="s2">;</span>
+<a name="l68"><span class="ln">68   </span></a>
+<a name="l69"><span class="ln">69   </span></a>    <span class="s1">}</span>
+<a name="l70"><span class="ln">70   </span></a>    <span class="s0">private </span><span class="s1">colour makePaletteColour(colour Colour</span><span class="s2">, </span><span class="s1">String colourName){</span>
+<a name="l71"><span class="ln">71   </span></a>        <span class="s3">//make colour and output it</span>
+<a name="l72"><span class="ln">72   </span></a>        <span class="s1">colour output=</span><span class="s0">new </span><span class="s1">colour(RGBChange(Colour.red)</span><span class="s2">,</span><span class="s1">RGBChange(Colour.green)</span><span class="s2">,</span><span class="s1">RGBChange(Colour.blue)</span><span class="s2">,</span><span class="s1">colourName)</span><span class="s2">;</span>
+<a name="l73"><span class="ln">73   </span></a>        <span class="s0">return </span><span class="s1">output</span><span class="s2">;</span>
+<a name="l74"><span class="ln">74   </span></a>    <span class="s1">}</span>
+<a name="l75"><span class="ln">75   </span></a>
+<a name="l76"><span class="ln">76   </span></a>
+<a name="l77"><span class="ln">77   </span></a>    <span class="s0">void </span><span class="s1">addColour(colour Colour){</span>
+<a name="l78"><span class="ln">78   </span></a>        <span class="s1">colours.add(Colour)</span><span class="s2">;</span>
+<a name="l79"><span class="ln">79   </span></a>    <span class="s1">}</span>
+<a name="l80"><span class="ln">80   </span></a><span class="s1">}</span>
+<a name="l81"><span class="ln">81   </span></a></pre>
+</body>
+</html>
