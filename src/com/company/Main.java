@@ -11,41 +11,54 @@ public class Main {
         ArrayList<colourPalette> palettes=new ArrayList<>();
         int index=1;
 
-        int[] oldtemp=toolBox.hexCodeToRGB("74d680");
-        colour newTemp=new colour(oldtemp[0],oldtemp[1],oldtemp[2],"?");
-        newTemp.displayColour();
-toolBox.premadeChristmasPalette().display();
-
-
-
-        boolean twoPalettes=false;
+        //welcome message
         System.out.println("Welcome User\n");
-
-
-
 
         while(true) {
             //options
-            System.out.print("1. Make palette 2. View colour 3. Previous Palettes\n>");
+            System.out.print("1. Make palette 2. Premade Palettes 3. View colour 4. Previous Palettes 5. Quit\n>");
             String userInput=INPUT.nextLine();
             //option 1 make palette
             if(userInput.equalsIgnoreCase("1")||userInput.equalsIgnoreCase("1.")||userInput.equalsIgnoreCase("Make palette")||userInput.equalsIgnoreCase("Make")){
                 palettes.add(toolBox.makePaletteOptions(INPUT));
             }
-            //option 2 display specified colour
-            else if(userInput.equalsIgnoreCase("2")||userInput.equalsIgnoreCase("2.")||userInput.equalsIgnoreCase("View colour")||userInput.equalsIgnoreCase("View")||userInput.equalsIgnoreCase("colour")){
+            //option 2 premade Palettes
+            else if(userInput.equalsIgnoreCase("2")||userInput.equalsIgnoreCase("2.")||userInput.equalsIgnoreCase("Premade")||userInput.equalsIgnoreCase("Premade Palette")){
+                System.out.println("\nChristmas Palette");
+                toolBox.premadeChristmasPalette().display();
+
+                System.out.println("\nHalloween Palette");
+                toolBox.premadeHalloweenPalette().display();
+
+                System.out.println("\nEaster Palette");
+                toolBox.premadeEasterPalette().display();
+
+                //give extra room after premade palettes
+                System.out.println("\n\n");
+
+            }
+            //option 3 display specified colour
+            else if(userInput.equalsIgnoreCase("3")||userInput.equalsIgnoreCase("3.")||userInput.equalsIgnoreCase("View colour")||userInput.equalsIgnoreCase("View")||userInput.equalsIgnoreCase("colour")){
+                //make colour
                 colour temp=toolBox.makeColour(INPUT);
+                //display the colour
                 temp.displayColour();
             }
-            //option 3 show previous palettes that have been made
-            else if(userInput.equalsIgnoreCase("3")||userInput.equalsIgnoreCase("3.")||userInput.equalsIgnoreCase("Previous palette")||userInput.equalsIgnoreCase("Previous")){
+            //option 4 show previous palettes that have been made
+            else if(userInput.equalsIgnoreCase("4")||userInput.equalsIgnoreCase("4.")||userInput.equalsIgnoreCase("Previous palette")||userInput.equalsIgnoreCase("Previous")){
+                //for each in the list palettes
                 for (colourPalette palette:palettes) {
+                    //display their information
                     System.out.println(index +". Palette");
                     palette.display();
                     System.out.println("\n");
                     index++;
                 }
                 index=1;
+            }
+            //quit program
+            else if(userInput.equalsIgnoreCase("5")||userInput.equalsIgnoreCase("5.")||userInput.equalsIgnoreCase("Quit")){
+                break;
             }
             else{
                 System.out.println(userInput+" isn't an option that this system understands");

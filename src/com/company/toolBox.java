@@ -37,14 +37,7 @@ public class toolBox {
         }
     }
 
-    public static int intIsRGBValue(int input) {
-        if (input < 0) {
-            return 0;
-        } else if (input > 255) {
-            return 255;
-        }
-        return input;
-    }
+
 
     public static colour makeColour(Scanner INPUT) {
         //get amount of red
@@ -56,22 +49,13 @@ public class toolBox {
         //get colour name
         System.out.print("What is the name of your colour?\n>");
 
-
+        //get name for the colour
         String colourName = INPUT.nextLine();
+
         return new colour(red, green, blue, colourName);
     }
 
-    public static colourPalette twoColourMakePalette(Scanner INPUT) {
-        System.out.println("\nLets start making your colour palette");
-
-        //make colour
-        System.out.println("\nFirst Colour:");
-        colour firstColour = toolBox.makeColour(INPUT);
-        System.out.println("\nSecond Colour:");
-        colour secondColour = toolBox.makeColour(INPUT);
-
-        //get amount of colours in your palette, make sure it is an int
-        int paletteAmount = toolBox.makeSureInputisInteger("How many colours do you want in your palette?\n>", INPUT);
+    public static colourPalette twoColourMakePalette(colour firstColour, colour secondColour, int paletteAmount, Scanner INPUT) {
 
         //make colour palette
         colourPalette palette = new colourPalette(firstColour, secondColour, paletteAmount);
@@ -90,15 +74,7 @@ public class toolBox {
             }
         }
     }
-
-    public static colourPalette makePalette(Scanner INPUT) {
-        System.out.println("\nLets start making your colour palette");
-
-        //make colour
-        colour mainColour = toolBox.makeColour(INPUT);
-
-        //get amount of colours in your palette, make sure it is an int
-        int paletteAmount = toolBox.makeSureInputisInteger("How many colours do you want in your palette?\n>", INPUT);
+    public static colourPalette makePalette(colour mainColour,int paletteAmount,Scanner INPUT) {
 
         //make colour palette
         colourPalette palette = new colourPalette(mainColour, paletteAmount);
@@ -119,6 +95,7 @@ public class toolBox {
 
     }
 
+
     public static int[] hexCodeToRGB(String hexCode) {
         String[] splitHexCode = hexCode.split("");
         int[] output = new int[3];
@@ -127,6 +104,7 @@ public class toolBox {
             double save = 0d;
 
             for (int j = 0; j < 2; j++) {
+                //turn the letters into their number equivalent
                 if (splitHexCode[i + j].equalsIgnoreCase("a")) {
                     num = 10;
                 } else if (splitHexCode[j + i * 2].equalsIgnoreCase("b")) {
@@ -140,27 +118,32 @@ public class toolBox {
                 } else if (splitHexCode[j + i * 2].equalsIgnoreCase("f")) {
                     num = 15;
                 } else {
+                    //the rest turn into numbers
                     try {
                         num = Integer.parseInt(splitHexCode[1]);
                     } catch (Exception e) {
                         num = 0;
                     }
-                }
+                }//get numbers into rgb values
                 save += (8.5 * num);
             }
-            System.out.println(save);
+            //turn them into ints
             output[i] = (int) save;
         }
         return output;
     }
 
     public static colour hexCodeToColour(String hexCode, String name) {
+        //turn hex code into rgb values
         int[] rgb = hexCodeToRGB(hexCode);
+        //get colour form rgb values
         return new colour(rgb[0], rgb[1], rgb[2], name);
     }
 
     public static colourPalette premadeChristmasPalette() {
         ArrayList<colour> colours = new ArrayList<>();
+
+        //make and add all the colours needed to colours list
         colour brightRed = new colour(255, 0, 0, "Bright Red");
         colours.add(brightRed);
         colour lightRed = new colour(255, 120, 120, "Light Red");
@@ -176,12 +159,49 @@ public class toolBox {
         return new colourPalette(colours);
     }
 
+    public static colourPalette premadeHalloweenPalette(){
+        ArrayList<colour> colours=new ArrayList<>();
 
+        //make and add all the colours needed to colours list
+        colour darkOrange=new colour(247, 95, 28,"Dark Orange");
+        colours.add(darkOrange);
+        colour orange=new colour(55, 154, 0,"Orange");
+        colours.add(orange);
+        colour green=new colour(133, 226, 31, "Green");
+        colours.add(green);
+        colour purple=new colour(136, 30, 228, "Purple");
+        colours.add(purple);
+        colour black=new colour(0,0,0,"Black");
+        colours.add(black);
+        return new colourPalette(colours);
+    }
+
+    public static colourPalette premadeEasterPalette(){
+        ArrayList<colour> colours=new ArrayList<>();
+
+        //make and add all the colours needed to colours list
+        colour pastelPink=new colour(255,212,230,"Pastel Pink");
+        colours.add(pastelPink);
+        colour pastelPurple=new colour(225,205,255,"Pastel Purple");
+        colours.add(pastelPurple);
+        colour pastelBlue=new colour(190,230,240,"Pastel Blue");
+        colours.add(pastelBlue);
+        colour pastelGreen=new colour(183,215,132, "Pastel Green");
+        colours.add(pastelGreen);
+        colour pastelYellow=new colour(255,255,162,"Pastel Yellow");
+        colours.add(pastelYellow);
+        return new colourPalette(colours);
+    }
+
+//to remove code from the main class
     public static colourPalette makePaletteOptions(Scanner INPUT) {
+        //preset varaibales
         boolean twoPalettes = false;
+        String userInput="";
         while (true) {
             System.out.print("Do you want to make the palette based on 1 or 2 colours?\n>");
-            String userInput = INPUT.nextLine();
+             userInput = INPUT.nextLine();
+             //set if there will be twoPalettes based on the user's answer
             if (userInput.equalsIgnoreCase("1") || userInput.equalsIgnoreCase("one")) {
                 twoPalettes = false;
                 break;
@@ -191,38 +211,57 @@ public class toolBox {
             } else {
                 System.out.println(userInput + " isn't an option that this system understands");
             }
+        }
             while (true) {
-                System.out.print("Do you wna to use Rgb or Hexcode for your colours? (Rgb, Hexcode)\n>");
+                System.out.print("Do you want to use Rgb or Hex code for your colours? (Rgb, Hex code)\n>");
                 userInput = INPUT.nextLine();
+
+                //make palette with RGB or Hex code based on user's input
                 if (userInput.equalsIgnoreCase("rgb") || userInput.equalsIgnoreCase("1")) {
-                    if (twoPalettes) {
-                        toolBox.twoColourMakePalette(INPUT);
+                    //make first colour
+                    colour mainColour = toolBox.makeColour(INPUT);
+
+                    if (twoPalettes) {System.out.println("\nLets start making your colour palette");
+                        //get amount of colours in your palette, make sure it is an int
+
+                        System.out.println("\nSecond Colour:");
+                        colour secondColour = toolBox.makeColour(INPUT);
+
+                        //get amount of colours in your palette, make sure it is an int
+                        int paletteAmount = toolBox.makeSureInputisInteger("How many colours do you want in your palette?\n>", INPUT);
+
+                        return toolBox.twoColourMakePalette(mainColour,secondColour,paletteAmount,INPUT);
                     } else {
-                        toolBox.makePalette(INPUT);
+                        int paletteAmount = toolBox.makeSureInputisInteger("How many colours do you want in your palette?\n>", INPUT);
+
+                        return makePalette(mainColour,paletteAmount,INPUT);
                     }
-                } else if (userInput.equalsIgnoreCase("hexcode") || userInput.equalsIgnoreCase("2")) {
+
+                } else if (userInput.equalsIgnoreCase("hexcode") || userInput.equalsIgnoreCase("hex code")||userInput.equalsIgnoreCase("2")) {
+                    //first colour
                     System.out.print("Input the hexCode\n>");
                     userInput = INPUT.nextLine();
                     System.out.print("Colour's name?\n>");
                     colour tempColour = toolBox.hexCodeToColour(userInput, INPUT.nextLine());
+
                     if (twoPalettes) {
+                        //two colour palette make
                         System.out.print("Second hexCode\n>");
                         userInput = INPUT.nextLine();
                         System.out.print("Colour's name?\n>");
 
-                        colourPalette temp = new colourPalette(tempColour, toolBox.hexCodeToColour(userInput, INPUT.nextLine()), toolBox.makeSureInputisInteger("Amount of colours in the palette?\n>", INPUT));
-                        return temp;
+                        return twoColourMakePalette(tempColour,hexCodeToColour(userInput,INPUT.nextLine()),makeSureInputisInteger("Amount of colours in the palette?\n>", INPUT), INPUT);
+
                     } else {
-                        colourPalette temp = new colourPalette(tempColour, toolBox.makeSureInputisInteger("Amount of colours in the palette?\n>", INPUT));
-                        return temp;
+                        return makePalette(tempColour,toolBox.makeSureInputisInteger("Amount of colours in the palette?\n>", INPUT), INPUT);
+
                     }
 
                 } else {
                     System.out.println(userInput + " isn't an option that this system understands");
                 }
             }
-        }
-        return temp;
+
     }
 
 
