@@ -22,7 +22,7 @@ public class Main {
             if(userInput.equalsIgnoreCase("1")||userInput.equalsIgnoreCase("1.")||userInput.equalsIgnoreCase("Make palette")||userInput.equalsIgnoreCase("Make")){
                 palettes.add(toolBox.makePaletteOptions(INPUT));
             }
-            //option 2 premade Palettes
+            //option 2 pre-made Palettes
             else if(userInput.equalsIgnoreCase("2")||userInput.equalsIgnoreCase("2.")||userInput.equalsIgnoreCase("Premade")||userInput.equalsIgnoreCase("Premade Palette")){
                 System.out.println("\nChristmas Palette");
                 toolBox.premadeChristmasPalette().display();
@@ -33,7 +33,7 @@ public class Main {
                 System.out.println("\nEaster Palette");
                 toolBox.premadeEasterPalette().display();
 
-                //give extra room after premade palettes
+                //give extra room after pre-made palettes
                 System.out.println("\n\n");
 
             }

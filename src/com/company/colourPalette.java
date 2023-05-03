@@ -61,7 +61,7 @@ public class colourPalette{
         //generate additiional palette colours
 
 
-
+        //make the average of the two colours if number of colours are more than 1
         if(this.numOfColours>2){
             int red=(firstKeyColour.red+secondKeyColour.red)/2;
             int green=(firstKeyColour.green+secondKeyColour.green)/2;
@@ -69,32 +69,47 @@ public class colourPalette{
 
             colour temp =new colour(red,green,blue,"Key colours average");
             this.colours.add(temp);
+
+            //Compliment of the first colour if number of colours are more than 2
             if (this.numOfColours>3) {
                 temp = new colour(255 - firstKeyColour.red, 255 - firstKeyColour.green, 255 - firstKeyColour.blue, firstKeyColour.commonName + "'s compliment");
                 this.colours.add(temp);
 
+                //Compliment of the second colour if number of colours are more than 3
                 if (this.numOfColours > 4) {
                     temp = new colour(255 - secondKeyColour.red, 255 - secondKeyColour.green, 255 - secondKeyColour.blue, secondKeyColour.commonName + "'s compliment");
-
                     this.colours.add(temp);
+
+                    //Compliment of the average of the two colours if the number of colours are more than 4
                     if (this.numOfColours > 5) {
-                        //fourth colour is the compliment of the average
                         temp = new colour(255 - red, 255 - green, 255 - blue, "Average's complement");
                         this.colours.add(temp);
 
+                        //randomly make analogous colours of the one made before. Repeat until the amount of colours in the palette is met
                         for (int i = 0; i < numOfColours - 5; i++) {
                             int random=rand.nextInt(10);
+
+                            // 3/10 chance of getting an analogous of the first colour
                             if (random == 0 || random==1 ||random==2) {
-                                temp = makePaletteColour(mainColour, "Analogous colour " + i);
-                            } else if(random==3|| random==4 ||random==5){
+                                temp = makePaletteColour(firstKeyColour, "Analogous colour " + i);
+                            }
+
+                            // 3/10 chance of getting an analogous of the second colour
+                            else if(random==3|| random==4 ||random==5){
                                 temp = makePaletteColour(secondKeyColour, "Analogous colour " + i);
                             }
+
+                            // 1/5 chance of getting an analogous of the average of the two colours
                             else if(random==6 || random==7){
                                 temp=makePaletteColour(255-red,255-green,255-blue, "Analogous colour "+i);
                             }
+
+                            // 1/10 chance of getting an analogous of the complimentary of the first colour
                             else if(random==8){
                             temp=makePaletteColour(255-firstKeyColour.red,255-firstKeyColour.green,255-firstKeyColour.blue, "Analogous colour "+i);
                             }
+
+                            // 1/10 chance of getting an analogous of the complimentary of the second colour
                             else if(random==9){
                                 temp=makePaletteColour(255-secondKeyColour.red,255-secondKeyColour.green,255-secondKeyColour.blue, "Analogous colour "+i);
                             }
@@ -108,6 +123,7 @@ public class colourPalette{
         }
 
 
+        //turn Arraylist of colours into a palette (used for pre-made palettes)
         colourPalette(ArrayList colours){
         this.colours=colours;
         }

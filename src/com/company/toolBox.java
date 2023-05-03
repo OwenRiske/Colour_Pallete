@@ -244,15 +244,17 @@ public class toolBox {
                     System.out.print("Colour's name?\n>");
                     colour tempColour = toolBox.hexCodeToColour(userInput, INPUT.nextLine());
 
+                    //if this will be a palette based on 2 colours
                     if (twoPalettes) {
-                        //two colour palette make
+                        //second colour
                         System.out.print("Second hexCode\n>");
                         userInput = INPUT.nextLine();
                         System.out.print("Colour's name?\n>");
-
+                        //make the palette and return it
                         return twoColourMakePalette(tempColour,hexCodeToColour(userInput,INPUT.nextLine()),makeSureInputisInteger("Amount of colours in the palette?\n>", INPUT), INPUT);
 
                     } else {
+                        //otherwise return the palette with just the first colour as the base
                         return makePalette(tempColour,toolBox.makeSureInputisInteger("Amount of colours in the palette?\n>", INPUT), INPUT);
 
                     }
